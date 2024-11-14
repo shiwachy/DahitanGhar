@@ -1,7 +1,16 @@
-﻿namespace DahitanGhar.Domain
-{
-    public class Class1
-    {
+﻿namespace DahitanGhar.Domain;
 
-    }
+public class Class1
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+}
+
+
+public class Class2
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+
+    public string? Address { get; set; }
 }

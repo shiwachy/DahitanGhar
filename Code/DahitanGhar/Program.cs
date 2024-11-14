@@ -6,6 +6,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+//Config Title for swaggger UI
+builder.Services.AddSwaggerDocument(config =>
+{
+    config.Title = "Dahitan Ghar";
+});
+
 //Config Angular UI
 builder.Services.AddSpaStaticFiles(configuration =>
 {
@@ -19,6 +25,9 @@ var env = app.Environment;
 if (env.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+    //Add swagger UI
+    app.UseOpenApi();
+    app.UseSwaggerUi();
 }
 else
 {
