@@ -25,9 +25,11 @@ var env = app.Environment;
 if (env.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    //Add swagger UI
     app.UseOpenApi();
-    app.UseSwaggerUi();
+    app.UseSwaggerUi(settings =>
+    {
+        settings.Path = "/api";
+    });
 }
 else
 {
@@ -35,6 +37,7 @@ else
     app.UseExceptionHandler("/Home/error"); // Custom path or middleware
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 
