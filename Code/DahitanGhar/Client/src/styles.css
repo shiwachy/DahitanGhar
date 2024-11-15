@@ -1,9 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 
 .contain-card {
-  margin-top: 10px;
-  padding-bottom: 40px;
-  font-family: "Inter";
+  margin: 0px 10px 0px 10px;
+}
+
+.p-menubar a {
+  text-decoration: none;
+}
+
+.ns-font {
+  font-family: "sans-serif";
+}
+
+.p-font {
+  font-family: "sans-serif";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span,
+div,
+small {
+  font-family: "sans-serif";
+  color: #4b5563;
+}
+
+.btn {
+  font-family: "sans-serif";
 }
