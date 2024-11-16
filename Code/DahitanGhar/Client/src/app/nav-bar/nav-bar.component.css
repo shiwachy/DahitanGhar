@@ -1,24 +1,5 @@
-.sidebar {
-    margin: 0;
-    padding: 11px;
-    padding-top: 68px;
-    height: 100vh;
-    background: hsl(204deg 100% 94.83%);
-    background: linear-gradient(280deg,
-            hsl(0deg 0% 100%) 0%,
-            hsl(0deg 0% 96.21%) 100%);
-    background: -moz-linear-gradient(280deg,
-            hsl(0deg 0% 100%) 0%,
-            hsl(0deg 0% 96.21%) 100%);
-    background: -webkit-linear-gradient(280deg,
-            hsl(0deg 0% 100%) 0%,
-            hsl(0deg 0% 96.21%) 100%);
-    backdrop-filter: blur(18.5px);
-    border-radius: 0;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    position: relative;
-    z-index: 1;
-    overflow: auto;
+.p-menu .p-menuitem-link {
+    text-decoration: none !important;
 }
 
 /* .sidebar:after{

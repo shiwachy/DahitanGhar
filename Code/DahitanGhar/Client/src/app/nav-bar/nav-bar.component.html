@@ -1,3 +1,5 @@
-<aside class="sidebar" @slide>
-    <p-panelMenu [model]="menuItems" [style]="{'border':'0px','width':'fit-content'}" />
+<aside class="sidebar">
+    <p-sidebar [visible]="true" [modal]="false">
+        <p-menu [model]="menuItems" />
+    </p-sidebar>
 </aside>

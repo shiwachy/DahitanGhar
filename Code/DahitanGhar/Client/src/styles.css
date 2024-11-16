@@ -3,20 +3,21 @@
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
+/* Order */
+@layer reset, primeng;
+
 .contain-card {
   margin: 0px 10px 0px 10px;
 }
 
-.p-menubar a {
-  text-decoration: none;
-}
-
 .ns-font {
   font-family: "sans-serif";
+  color: #4b5563;
 }
 
 .p-font {
   font-family: "sans-serif";
+  color: #4b5563;
 }
 
 h1,
@@ -33,6 +34,8 @@ small {
   color: #4b5563;
 }
 
-.btn {
+.btn,
+button {
   font-family: "sans-serif";
+  color: white;
 }
