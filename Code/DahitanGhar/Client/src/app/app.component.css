@@ -1,0 +1,24 @@
+.header {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+}
+
+.body-container {
+    margin-top: 64px;
+}
+
+@media (max-width: 305px) {
+
+    /* Change the size condition as needed */
+    .body-container {
+        margin-top: calc(64px + 24px);
+        /* Adjusted margin for smaller screens */
+    }
+}
+
+.toggleMenuBtn {
+    height: fit-content;
+    width: fit-content;
+}
