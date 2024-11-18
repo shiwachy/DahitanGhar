@@ -3,32 +3,15 @@ import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { SidebarModule } from 'primeng/sidebar';
-import {
-  trigger,
-  style,
-  animate,
-  transition,
-  // ...
-} from '@angular/animations';
+import { ButtonModule } from 'primeng/button';
+
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [MenuModule, SidebarModule, ToastModule],
+  imports: [MenuModule, SidebarModule, ToastModule, ButtonModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css',
-  animations: [
-    trigger('slide', [
-      transition(':enter', [
-        // when ngif has true
-        style({ transform: 'translateX(-100%)' }),
-        animate(250, style({ transform: 'translateX(0)' }))
-      ]),
-      transition(':leave', [
-        // when ngIf has false
-        animate(250, style({ transform: 'translateX(-100%)' }))
-      ])
-    ])
-  ]
+
 })
 export class NavBarComponent implements OnInit {
   menuItems: MenuItem[] | undefined;
@@ -65,7 +48,6 @@ export class NavBarComponent implements OnInit {
       },
     ]
   }
-
 
 
 
