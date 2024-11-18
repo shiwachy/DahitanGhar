@@ -1,0 +1,36 @@
+.sidebar {
+    margin: 0;
+    padding: 0px;
+    height: 95vh;
+    background: hsl(204deg 100% 94.83%);
+    background: linear-gradient(280deg,
+            hsl(0deg 0% 100%) 0%,
+            hsl(0deg 0% 96.21%) 100%);
+    background: -moz-linear-gradient(280deg,
+            hsl(0deg 0% 100%) 0%,
+            hsl(0deg 0% 96.21%) 100%);
+    background: -webkit-linear-gradient(280deg,
+            hsl(0deg 0% 100%) 0%,
+            hsl(0deg 0% 96.21%) 100%);
+    backdrop-filter: blur(18.5px);
+    border-radius: 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+    z-index: 1;
+    overflow: auto;
+}
+
+::ng-deep .p-menu {
+    padding: 0px;
+    background-color: #F8F8F8;
+    border: 0px;
+}
+
+::ng-deep .p-menu-list {
+    padding-left: 0px;
+}
+
+::ng-deep .p-menu .p-menuitem-link {
+    text-decoration: none;
+    padding: 0.5rem 1.25rem;
+}
