@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api'; import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
+import { ToastModule } from 'primeng/toast';
 import { SidebarModule } from 'primeng/sidebar';
 import {
   trigger,
@@ -11,7 +13,7 @@ import {
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [MenuModule, SidebarModule],
+  imports: [MenuModule, SidebarModule, ToastModule],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css',
   animations: [
@@ -30,34 +32,43 @@ import {
 })
 export class NavBarComponent implements OnInit {
   menuItems: MenuItem[] | undefined;
-
+  panelMenu: MenuItem[] | undefined;
   ngOnInit() {
+    this.InitializeMenuItems();
+  };
+
+  InitializeMenuItems() {
     this.menuItems = [
       {
         label: 'Home',
         icon: 'pi pi-home',
       },
       {
+        label: 'Menus',
+        icon: 'pi pi-book'
+      },
+      {
         label: 'Our Services',
         icon: 'pi pi-star'
       },
       {
-        label: 'Menus',
-        icon: 'pi pi-star'
-      },
-      {
-        label: 'Bookings',
-        icon: 'pi pi-star'
-      },
-      {
         label: 'Gallery',
-        icon: 'pi pi-star'
+        icon: 'pi pi-images'
       },
       {
         label: 'Contact Us',
-        icon: 'pi pi-star'
+        icon: 'pi pi-phone'
       },
-
+      {
+        label: 'Admin',
+        icon: 'pi pi-user'
+      },
     ]
   }
+
+
+
+
+
+
 }
