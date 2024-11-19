@@ -34,3 +34,28 @@
     text-decoration: none;
     padding: 0.5rem 1.25rem;
 }
+
+::ng-deep .p-panelmenu .p-panelmenu-content {
+    padding: 0px;
+    background-color: #F8F8F8;
+    border: 0px;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content {
+    border: 0px;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content .p-panelmenu-header-action {
+    padding: 0px;
+    text-decoration: none;
+    border: 0px;
+}
+
+::ng-deep a {
+    color: #4B5563;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-content .p-menuitem-link {
+    text-decoration: none;
+    padding: 0.5rem 1.25rem;
+}
