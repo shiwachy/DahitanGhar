@@ -36,5 +36,9 @@ small {
 .btn,
 button {
   font-family: "sans-serif";
-  color: white;
+}
+
+
+label {
+  display: block;
 }

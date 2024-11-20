@@ -1,0 +1,24 @@
+/* Note: Most of the class appear here may not be included in html elements but still they are working. 
+    So to identify which class is used by perticular element, check class used by that element by inspecting it in browser
+*/
+
+:host ::ng-deep .p-checkbox-box {
+    background-color: #111827;
+    border-color: #424B57;
+    font-weight: 600;
+}
+
+:host ::ng-deep .p-checkbox-label {
+    color: white !important;
+    cursor: pointer;
+}
+
+.ank_forgotPass {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+.ank_forgotPass:hover {
+    color: #818cf8;
+}
