@@ -1,5 +1,7 @@
 using DahitanGhar.Application.Interfaces;
 using DahitanGhar.Infrastructure.DbSet;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,20 +55,38 @@ else
     app.UseHsts();
 }
 
+//Use below code if static files are to be used in production environment (if angular is used as a client)
+app.UseStaticFiles();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseSpaStaticFiles();
+}
+app.UseRouting();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller}/{action=Index}/{id?}");
+});
+
 app.UseSpa(spa =>
 {
-    spa.Options.SourcePath = "Client/dist/Client/browser"; //this will be used for production...
+    spa.Options.SourcePath = "Client/dist/Client/browser"; // this will be used for production...
 
     if (env.IsDevelopment())
     {
         spa.UseProxyToSpaDevelopmentServer(builder.Configuration["SpaBaseUrl"] ?? "http://localhost:4200");
     }
+
 });
+
 
 app.Run();
