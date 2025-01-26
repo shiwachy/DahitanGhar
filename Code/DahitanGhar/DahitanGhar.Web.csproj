@@ -16,11 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DahitanGhar.Domain\DahitanGhar.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\DahitanGhar.Infrastructure\DahitanGhar.Infrastructure.csproj" />
   </ItemGroup>
 
 	<PropertyGroup>

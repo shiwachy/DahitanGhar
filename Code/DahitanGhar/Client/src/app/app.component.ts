@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { LoginComponent } from "./auth/login/login.component";
+import { AuthClient } from './dgApiClient';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,7 +18,8 @@ import { LoginComponent } from "./auth/login/login.component";
     FormsModule,
     DialogModule, LoginComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  providers: [AuthClient]
 })
 export class AppComponent {
   public isMenubarVisible: boolean = false;

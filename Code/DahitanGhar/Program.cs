@@ -1,3 +1,7 @@
+using DahitanGhar.Application.Interfaces;
+using DahitanGhar.Infrastructure.DbSet;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +15,17 @@ builder.Services.AddSwaggerDocument(config =>
 {
     config.Title = "Dahitan Ghar";
 });
+
+//Register DbContext
+builder.Services.AddDbContextPool<DgDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DgConnStr"));
+});
+
+
+//Register Services
+builder.Services.AddScoped<IDgDbContext, DgDbContext>();
+
 
 //Config Angular UI
 builder.Services.AddSpaStaticFiles(configuration =>
@@ -37,7 +52,6 @@ else
     app.UseExceptionHandler("/Home/error"); // Custom path or middleware
     app.UseHsts();
 }
-
 
 app.UseHttpsRedirection();
 
