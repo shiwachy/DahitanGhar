@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using DahitanGhar.Domain.Common;
+using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DahitanGhar.Web.Controllers;
@@ -17,5 +19,16 @@ public class ApiBaseController : Controller
             }
             return _mediator ?? throw new NullReferenceException(nameof(_mediator));
         }
+    }
+
+
+    public ActionResult HandleResult<T>(OperationResult<T> result)
+    {
+        if (result.IsSuccess)
+            return Ok(result.Data);
+        
+        //If result is failed return error message.
+        return BadRequest(result.Message);
+        
     }
 }
