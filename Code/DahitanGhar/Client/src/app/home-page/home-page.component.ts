@@ -12,25 +12,13 @@ import { HttpBackend, HttpClient } from '@angular/common/http';
 export class HomePageComponent {
   homePageIntroText: string = "";
 
-  constructor(private authClient: AuthClient, private http: HttpClient) {
+  constructor() {
 
   }
 
-  getUsers() {
-    this.http.get("https://localhost:7030/api/Auth/GetUsers").subscribe({
-      next: res => {
-        console.log(res);
-      }, error: err => {
-        console.log(err);
-      }
-    })
-  }
-
-  // getUsers1(){
-  //   this.http.get("").subscribe();
-
-  // }
-
+  //getUsers() {
+  //  this.authClient.auth_GetUsers().subscribe();
+  //}
 
 
 }

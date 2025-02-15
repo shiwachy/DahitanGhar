@@ -1,30 +1,27 @@
-﻿using DahitanGhar.Application.Interfaces;
+﻿using DahitanGhar.Application.Auth.Login;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace DahitanGhar.Web.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class AuthController : Controller
+public class AuthController : ApiBaseController
 {
-    private readonly IDgDbContext dgDbContext;
-    public AuthController(IDgDbContext _dgDbContext)
+
+    [HttpPost]
+    [Route("Login")]
+    [ProducesResponseType(typeof(AuthenticationResponseDto), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.InternalServerError)]
+    [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.UnprocessableEntity)]
+    [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.Unauthorized)]
+
+    public async Task<ActionResult<AuthenticationResponseDto>> Login([FromBody]LoginCommand command)
     {
-        dgDbContext = _dgDbContext;
+          var result = await Mediator.Send(command);
+        return Ok(result);
+       
     }
 
-    [HttpGet("GetUsers")]
-    public IActionResult GetUsers()
-    {
-        var users = dgDbContext.Users.ToList();
-        return Ok();
-    }
 
 
-    [HttpPost("SendUsers")]
-    public IActionResult SendUsers()
-    {
-        var users = dgDbContext.Users.ToList();
-        return Ok();
-    }
 }

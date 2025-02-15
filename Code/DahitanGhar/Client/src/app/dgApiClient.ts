@@ -16,11 +16,12 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 export interface IAuthClient {
-    auth_GetUsers(): Observable<FileResponse | null>;
-    auth_SendUsers(): Observable<FileResponse | null>;
+    auth_Login(command: LoginCommand): Observable<AuthenticationResponseDto>;
 }
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthClient implements IAuthClient {
     private http: HttpClient;
     private baseUrl: string;
@@ -31,102 +32,78 @@ export class AuthClient implements IAuthClient {
         this.baseUrl = baseUrl ?? "";
     }
 
-    auth_GetUsers(): Observable<FileResponse | null> {
-        let url_ = this.baseUrl + "/api/Auth/GetUsers";
+    auth_Login(command: LoginCommand): Observable<AuthenticationResponseDto> {
+        let url_ = this.baseUrl + "/Login";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(command);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
-            })
-        };
-
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAuth_GetUsers(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processAuth_GetUsers(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<FileResponse | null>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<FileResponse | null>;
-        }));
-    }
-
-    protected processAuth_GetUsers(response: HttpResponseBase): Observable<FileResponse | null> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200 || status === 206) {
-            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
-            let fileNameMatch = contentDisposition ? /filename\*=(?:(\\?['"])(.*?)\1|(?:[^\s]+'.*?')?([^;\n]*))/g.exec(contentDisposition) : undefined;
-            let fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[3] || fileNameMatch[2] : undefined;
-            if (fileName) {
-                fileName = decodeURIComponent(fileName);
-            } else {
-                fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
-                fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
-            }
-            return _observableOf({ fileName: fileName, data: responseBlob as any, status: status, headers: _headers });
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
-    }
-
-    auth_SendUsers(): Observable<FileResponse | null> {
-        let url_ = this.baseUrl + "/api/Auth/SendUsers";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             })
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAuth_SendUsers(response_);
+            return this.processAuth_Login(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAuth_SendUsers(response_ as any);
+                    return this.processAuth_Login(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<FileResponse | null>;
+                    return _observableThrow(e) as any as Observable<AuthenticationResponseDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<FileResponse | null>;
+                return _observableThrow(response_) as any as Observable<AuthenticationResponseDto>;
         }));
     }
 
-    protected processAuth_SendUsers(response: HttpResponseBase): Observable<FileResponse | null> {
+    protected processAuth_Login(response: HttpResponseBase): Observable<AuthenticationResponseDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
             (response as any).error instanceof Blob ? (response as any).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200 || status === 206) {
-            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
-            let fileNameMatch = contentDisposition ? /filename\*=(?:(\\?['"])(.*?)\1|(?:[^\s]+'.*?')?([^;\n]*))/g.exec(contentDisposition) : undefined;
-            let fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[3] || fileNameMatch[2] : undefined;
-            if (fileName) {
-                fileName = decodeURIComponent(fileName);
-            } else {
-                fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
-                fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
-            }
-            return _observableOf({ fileName: fileName, data: responseBlob as any, status: status, headers: _headers });
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = AuthenticationResponseDto.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status === 400) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result400: any = null;
+            let resultData400 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result400 = ProblemDetails.fromJS(resultData400);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result400);
+            }));
+        } else if (status === 500) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result500: any = null;
+            let resultData500 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result500 = ProblemDetails.fromJS(resultData500);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result500);
+            }));
+        } else if (status === 422) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result422: any = null;
+            let resultData422 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result422 = ProblemDetails.fromJS(resultData422);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result422);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result401: any = null;
+            let resultData401 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result401 = ProblemDetails.fromJS(resultData401);
+            return throwException("A server side error occurred.", status, _responseText, _headers, result401);
+            }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -136,14 +113,159 @@ export class AuthClient implements IAuthClient {
     }
 }
 
-export interface FileResponse {
-    data: Blob;
-    status: number;
-    fileName?: string;
-    headers?: { [name: string]: any };
+export class AuthenticationResponseDto implements IAuthenticationResponseDto {
+    success!: boolean;
+    accessToken!: string;
+    refreshToken!: string;
+    errorMessage!: string;
+
+    constructor(data?: IAuthenticationResponseDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.accessToken = _data["accessToken"];
+            this.refreshToken = _data["refreshToken"];
+            this.errorMessage = _data["errorMessage"];
+        }
+    }
+
+    static fromJS(data: any): AuthenticationResponseDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new AuthenticationResponseDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["accessToken"] = this.accessToken;
+        data["refreshToken"] = this.refreshToken;
+        data["errorMessage"] = this.errorMessage;
+        return data;
+    }
 }
 
-export class ApiException extends Error {
+export interface IAuthenticationResponseDto {
+    success: boolean;
+    accessToken: string;
+    refreshToken: string;
+    errorMessage: string;
+}
+
+export class ProblemDetails implements IProblemDetails {
+    type?: string | undefined;
+    title?: string | undefined;
+    status?: number | undefined;
+    detail?: string | undefined;
+    instance?: string | undefined;
+
+    [key: string]: any;
+
+    constructor(data?: IProblemDetails) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            for (var property in _data) {
+                if (_data.hasOwnProperty(property))
+                    this[property] = _data[property];
+            }
+            this.type = _data["type"];
+            this.title = _data["title"];
+            this.status = _data["status"];
+            this.detail = _data["detail"];
+            this.instance = _data["instance"];
+        }
+    }
+
+    static fromJS(data: any): ProblemDetails {
+        data = typeof data === 'object' ? data : {};
+        let result = new ProblemDetails();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        for (var property in this) {
+            if (this.hasOwnProperty(property))
+                data[property] = this[property];
+        }
+        data["type"] = this.type;
+        data["title"] = this.title;
+        data["status"] = this.status;
+        data["detail"] = this.detail;
+        data["instance"] = this.instance;
+        return data;
+    }
+}
+
+export interface IProblemDetails {
+    type?: string | undefined;
+    title?: string | undefined;
+    status?: number | undefined;
+    detail?: string | undefined;
+    instance?: string | undefined;
+
+    [key: string]: any;
+}
+
+export class LoginCommand implements ILoginCommand {
+    userName!: string;
+    password!: string;
+
+    constructor(data?: ILoginCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.userName = _data["userName"];
+            this.password = _data["password"];
+        }
+    }
+
+    static fromJS(data: any): LoginCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new LoginCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["userName"] = this.userName;
+        data["password"] = this.password;
+        return data;
+    }
+}
+
+export interface ILoginCommand {
+    userName: string;
+    password: string;
+}
+
+export class SwaggerException extends Error {
     override message: string;
     status: number;
     response: string;
@@ -160,10 +282,10 @@ export class ApiException extends Error {
         this.result = result;
     }
 
-    protected isApiException = true;
+    protected isSwaggerException = true;
 
-    static isApiException(obj: any): obj is ApiException {
-        return obj.isApiException === true;
+    static isSwaggerException(obj: any): obj is SwaggerException {
+        return obj.isSwaggerException === true;
     }
 }
 
@@ -171,7 +293,7 @@ function throwException(message: string, status: number, response: string, heade
     if (result !== null && result !== undefined)
         return _observableThrow(result);
     else
-        return _observableThrow(new ApiException(message, status, response, headers, null));
+        return _observableThrow(new SwaggerException(message, status, response, headers, null));
 }
 
 function blobToText(blob: any): Observable<string> {

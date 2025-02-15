@@ -1,8 +1,7 @@
 using DahitanGhar.Application.Interfaces;
 using DahitanGhar.Infrastructure.DbSet;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,9 +23,17 @@ builder.Services.AddDbContextPool<DgDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DgConnStr"));
 });
 
-
-//Register Services
+//Register DbContext Interface.
 builder.Services.AddScoped<IDgDbContext, DgDbContext>();
+
+
+//Inject MediatR
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssemblies(
+        Assembly.GetExecutingAssembly(), // Registers API project
+        Assembly.Load("DahitanGhar.Application") // Registers Application layer
+    )
+);
 
 
 //Config Angular UI
@@ -66,6 +73,7 @@ app.UseRouting();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
