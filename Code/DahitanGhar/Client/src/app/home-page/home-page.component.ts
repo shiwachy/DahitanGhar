@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthClient, IAuthClient } from '../dgApiClient';
-import { HttpBackend, HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'home-page',

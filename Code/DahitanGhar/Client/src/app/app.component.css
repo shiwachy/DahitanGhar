@@ -3,10 +3,11 @@
     z-index: 1000;
     top: 0;
     left: 0;
+    height: 65px;
 }
 
 .body-container {
-    margin-top: 64px;
+    padding-top: 65px;
 }
 
 @media (max-width: 305px) {

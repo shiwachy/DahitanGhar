@@ -25,15 +25,15 @@
             </div>
         </div>
     </div>
-    <div class="nav d-flex body-container">
+    <div class="body-container">
         <div *ngIf="isMenubarVisible" class="position-fixed">
             <nav-bar></nav-bar>
         </div>
+        <!-- All pages are loaded here -->
         <div (click)="OnClickBodyPage()">
             <router-outlet></router-outlet>
         </div>
     </div>
-
 
     <!-- User login page -->
     <div class="login-page">

@@ -5,8 +5,9 @@
 /* Order */
 @layer reset, primeng;
 
-.contain-card {
-  margin: 0px 10px 0px 10px;
+.body-container {
+  margin: 0px;
+  width: 100%;
 }
 
 .ns-font {
@@ -41,4 +42,10 @@ button {
 
 label {
   display: block;
+}
+
+
+
+.keep-margin {
+  margin: 0px 10px;
 }

@@ -3,7 +3,6 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
-import { AuthClient, LoginCommand } from '../../dgApiClient';
 
 @Component({
   selector: 'login',
@@ -13,20 +12,10 @@ import { AuthClient, LoginCommand } from '../../dgApiClient';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private _authClient: AuthClient) {
+  constructor() {
 
   }
 
 
-  LogIn() {
-    let cmd = new LoginCommand({
-      userName: "admin@gmail.com",
-      password: "pass@123"
-    });
-    this._authClient.auth_Login(cmd).subscribe({
-      next: res => {
-        console.log(res);
-      }
-    })
-  }
+
 }
