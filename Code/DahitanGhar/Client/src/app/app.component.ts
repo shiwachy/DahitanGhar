@@ -9,6 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { LoginComponent } from "./auth/login/login.component";
 import { AuthClient } from './dgApiClient';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from './shared/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,7 +20,7 @@ import { HttpClient } from '@angular/common/http';
     DialogModule, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [AuthClient]
+  providers: [AuthClient, AuthService]
 })
 export class AppComponent {
   public isMenubarVisible: boolean = false;

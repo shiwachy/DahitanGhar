@@ -44,8 +44,18 @@ label {
   display: block;
 }
 
-
-
 .keep-margin {
   margin: 0px 10px;
+}
+
+
+.btn-default-style {
+  color: white !important;
+  background-color: #002F61 !important;
+}
+
+.btn-admin-action {
+  color: white !important;
+  background-color: #ab511e !important;
+  min-width: 70px !important;
 }

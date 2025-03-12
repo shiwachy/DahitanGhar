@@ -14,7 +14,7 @@
 
     /* Change the size condition as needed */
     .body-container {
-        margin-top: calc(64px + 24px);
+        padding-top: calc(64px + 24px);
         /* Adjusted margin for smaller screens */
     }
 }
