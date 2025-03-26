@@ -31,4 +31,14 @@ public class ApiBaseController : Controller
         return BadRequest(result.Message);
         
     }
+
+    public ActionResult HandleResult(OperationResult result)
+    {
+        if (result.IsSuccess)
+            return Ok(result);
+
+        //If result is failed return error message.
+        return BadRequest(result.Message);
+
+    }
 }

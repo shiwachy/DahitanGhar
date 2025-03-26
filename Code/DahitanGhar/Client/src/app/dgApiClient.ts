@@ -15,6 +15,101 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
+export interface IFilesClient {
+    files_UploadImage(uploadImageDto_Image: FileParameter | undefined, uploadImageDto_ImageType: string | undefined, uploadImageDto_Title: string | undefined, uploadImageDto_CostPerNight: number | null | undefined, uploadImageDto_Summary: string | null | undefined, uploadImageDto_RoomType: string | null | undefined, uploadImageDto_IsCarousalActive: boolean | undefined): Observable<FileResponse | null>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class FilesClient implements IFilesClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    files_UploadImage(uploadImageDto_Image: FileParameter | undefined, uploadImageDto_ImageType: string | undefined, uploadImageDto_Title: string | undefined, uploadImageDto_CostPerNight: number | null | undefined, uploadImageDto_Summary: string | null | undefined, uploadImageDto_RoomType: string | null | undefined, uploadImageDto_IsCarousalActive: boolean | undefined): Observable<FileResponse | null> {
+        let url_ = this.baseUrl + "/UploadImage?";
+        if (uploadImageDto_ImageType === null)
+            throw new Error("The parameter 'uploadImageDto_ImageType' cannot be null.");
+        else if (uploadImageDto_ImageType !== undefined)
+            url_ += "uploadImageDto.ImageType=" + encodeURIComponent("" + uploadImageDto_ImageType) + "&";
+        if (uploadImageDto_Title === null)
+            throw new Error("The parameter 'uploadImageDto_Title' cannot be null.");
+        else if (uploadImageDto_Title !== undefined)
+            url_ += "uploadImageDto.Title=" + encodeURIComponent("" + uploadImageDto_Title) + "&";
+        if (uploadImageDto_CostPerNight !== undefined && uploadImageDto_CostPerNight !== null)
+            url_ += "uploadImageDto.CostPerNight=" + encodeURIComponent("" + uploadImageDto_CostPerNight) + "&";
+        if (uploadImageDto_Summary !== undefined && uploadImageDto_Summary !== null)
+            url_ += "uploadImageDto.Summary=" + encodeURIComponent("" + uploadImageDto_Summary) + "&";
+        if (uploadImageDto_RoomType !== undefined && uploadImageDto_RoomType !== null)
+            url_ += "uploadImageDto.RoomType=" + encodeURIComponent("" + uploadImageDto_RoomType) + "&";
+        if (uploadImageDto_IsCarousalActive === null)
+            throw new Error("The parameter 'uploadImageDto_IsCarousalActive' cannot be null.");
+        else if (uploadImageDto_IsCarousalActive !== undefined)
+            url_ += "uploadImageDto.IsCarousalActive=" + encodeURIComponent("" + uploadImageDto_IsCarousalActive) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = new FormData();
+        if (uploadImageDto_Image === null || uploadImageDto_Image === undefined)
+            throw new Error("The parameter 'uploadImageDto_Image' cannot be null.");
+        else
+            content_.append("uploadImageDto.Image", uploadImageDto_Image.data, uploadImageDto_Image.fileName ? uploadImageDto_Image.fileName : "uploadImageDto.Image");
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processFiles_UploadImage(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processFiles_UploadImage(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FileResponse | null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FileResponse | null>;
+        }));
+    }
+
+    protected processFiles_UploadImage(response: HttpResponseBase): Observable<FileResponse | null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            let fileNameMatch = contentDisposition ? /filename\*=(?:(\\?['"])(.*?)\1|(?:[^\s]+'.*?')?([^;\n]*))/g.exec(contentDisposition) : undefined;
+            let fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[3] || fileNameMatch[2] : undefined;
+            if (fileName) {
+                fileName = decodeURIComponent(fileName);
+            } else {
+                fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+                fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            }
+            return _observableOf({ fileName: fileName, data: responseBlob as any, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
 export interface IAuthClient {
     auth_Login(command: LoginCommand): Observable<AuthenticationResponseDto>;
 }
@@ -263,6 +358,18 @@ export class LoginCommand implements ILoginCommand {
 export interface ILoginCommand {
     userName: string;
     password: string;
+}
+
+export interface FileParameter {
+    data: any;
+    fileName: string;
+}
+
+export interface FileResponse {
+    data: Blob;
+    status: number;
+    fileName?: string;
+    headers?: { [name: string]: any };
 }
 
 export class SwaggerException extends Error {

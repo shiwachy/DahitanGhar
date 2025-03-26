@@ -13,6 +13,8 @@ public class OperationResult
     public static OperationResult Success() => new OperationResult(true);
     public static OperationResult<T> Success<T>(T data) => new OperationResult<T>(true, data, null);
     public static OperationResult<T> Failure<T>(string message) => new OperationResult<T>(false, default, message);
+    public static OperationResult Failure(string message) => new OperationResult(false, message);
+
 
 }
 
@@ -25,5 +27,5 @@ public class OperationResult<T> : OperationResult
         Data = data;
     }
     public static OperationResult<T> Success(T data) => new OperationResult<T>(true, data, null);
-
+    public static OperationResult<T> Failure(string message) => new OperationResult<T>(false, default, message);
 }

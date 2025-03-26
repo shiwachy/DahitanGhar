@@ -31,3 +31,28 @@ VALUES(NEWID(),'admin',
 	'550e8400-e29b-41d4-a716-446655440000',
 	SYSDATETIMEOFFSET()
 );
+GO
+
+/*Start: 18Mar'2025, Tables to store image and their description created.*/
+GO
+DROP TABLE IF EXISTS Mst_Image
+CREATE TABLE Mst_Image(
+	ImageId INT NOT NULL CONSTRAINT PK_Mst_Images_ID PRIMARY KEY IDENTITY(1,1),
+	Source VARCHAR(1000) NOT NULL,
+	ImageType NVARCHAR(100) NOT NULL,
+	Title NVARCHAR(200) NOT NULL,
+	IsCarousalActive BIT NOT NULL
+)
+
+
+GO
+DROP TABLE IF EXISTS Img_Description
+CREATE TABLE Img_Description(
+	Id INT NOT NULL CONSTRAINT PK_Img_Description_Id PRIMARY KEY IDENTITY(1,1),
+	ImageId INT CONSTRAINT FK_Img_Description_Id_Mst_Images_Id REFERENCES Mst_Image(ImageId),
+	CostPerNight INT, --Only if Image type is room.
+	Summary NVARCHAR(1000),
+	RoomType VARCHAR(50)  --Only if Image type is room.
+)
+GO
+/*End: 18Mar'2025, Tables to store image and their description created.*/
