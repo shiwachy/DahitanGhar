@@ -59,3 +59,16 @@ label {
   background-color: #ab511e !important;
   min-width: 70px !important;
 }
+
+
+/* Body of login component (p-dialog)*/
+::ng-deep .p-dialog-content,
+::ng-deep .p-dialog-header {
+  background-color: white;
+}
+
+/* Header of login component (p-dialog)  */
+::ng-deep .p-dialog .p-dialog-header .p-dialog-title {
+  font-family: "sans-serif";
+  color: #4b5563;
+}
