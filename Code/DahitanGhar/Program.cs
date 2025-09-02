@@ -1,8 +1,3 @@
-using DahitanGhar.Application.Interfaces;
-using DahitanGhar.Infrastructure.DbSet;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,33 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-//Config Title for swaggger UI
-builder.Services.AddSwaggerDocument(config =>
-{
-    config.Title = "Dahitan Ghar";
-});
-
-//Register DbContext
-builder.Services.AddDbContextPool<DgDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DgConnStr"));
-});
-
-//Register DbContext Interface.
-builder.Services.AddScoped<IDgDbContext, DgDbContext>();
-
-
-//Inject MediatR
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssemblies(
-        Assembly.GetExecutingAssembly(), // Registers API project
-        Assembly.Load("DahitanGhar.Application") // Registers Application layer
-    )
-);
-
-
-//Config Angular UI
+//Configure SPA service.
 builder.Services.AddSpaStaticFiles(configuration =>
 {
     configuration.RootPath = "Client/dist/Client/browser";
@@ -44,16 +15,16 @@ builder.Services.AddSpaStaticFiles(configuration =>
 
 var app = builder.Build();
 
-var env = app.Environment;
 // Configure the HTTP request pipeline.
+var env = app.Environment;
 if (env.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
-    app.UseOpenApi();
-    app.UseSwaggerUi(settings =>
+    app.UseSwagger();
+    app.UseSwaggerUI(settings =>
     {
-        settings.Path = "/api";
+        settings.RoutePrefix = "swagger";
     });
+    app.UseDeveloperExceptionPage();
 }
 else
 {
@@ -62,10 +33,8 @@ else
     app.UseHsts();
 }
 
-//Use below code if static files are to be used in production environment (if angular is used as a client)
 app.UseStaticFiles();
-
-if (!app.Environment.IsDevelopment())
+if (!env.IsDevelopment())
 {
     app.UseSpaStaticFiles();
 }
@@ -73,7 +42,6 @@ app.UseRouting();
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
