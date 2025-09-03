@@ -1,12 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "primeicons/primeicons.css";
+
+:root {
+    /* Primary Colors*/
+    --primary-gold: #FFD700;
+    --primary-terracotta: #CC5500;
+    --primary-forest: #228B22;
+    --primary-earth: #8B4513;
+
+    /* Secondary Colors */
+    --secondary-cream: #F5F5DC;
+    --secondary-sage: #9CAF88;
+    --secondary-burnt-orange: #FF6347;
+    --secondary-deep-brown: #4A4A2A;
+
+    /* Neutral Colors */
+    --white: #FFFFFF;
+    --light-gray: #F8F8F8;
+    --medium-gray: #CCCCCC;
+    --dark-gray: #333333;
+    --black: #000000;
+
+    /* Accent Colors */
+    --accent-copper: #B87333;
+    --accent-jade: #00A86B;
+    --accent-crimson: #DC143C;
+
+    /* Typography */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Playfair Display', serif;
+    --font-accent: 'Dancing Script', cursive;
+
+    /* Spacing System */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-xxl: 4rem;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 50px;
+
+    /* Shadows */
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
 
 /* Base font */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: var(--font-primary);
     font-weight: 400;
     font-style: normal;
 }
@@ -18,7 +69,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Playfair Display", serif;
+    font-family: var(--font-secondary);
     font-weight: 700;
     font-style: normal;
 }
@@ -38,7 +89,7 @@ div {
     padding: 0px;
 }
 
-/* Give left and Right padding to align all contents. */
+/* Apply left and right padding (5%) to keep content aligned within the container */
 .ele-container {
     margin: 0px;
     padding: 0px 5%;

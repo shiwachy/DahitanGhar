@@ -1,0 +1,22 @@
+ ::ng-deep .p-menubar {
+     background-color: #fff;
+     border: 0px;
+     justify-self: self-end;
+     padding: 1rem 0px;
+ }
+
+ .ele-container .header-bar {
+     /* Background color */
+     --p-menubar-background: #fff;
+     /* padding of menubar item */
+     --p-menubar-base-item-padding: var(--space-sm) var(--space-md);
+
+     /* Border radius of menubar item */
+     --p-menubar-base-item-border-radius: 50px;
+
+     /* Background color of menu button on hover */
+     --p-menubar-item-focus-background: var(--primary-gold);
+
+     /* color of label and icon of menu item */
+     --p-menubar-item-focus-color: white;
+ }
