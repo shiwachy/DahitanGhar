@@ -1,0 +1,55 @@
+.main-layout {
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+        "menu"
+        "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 75px 1fr 60px;
+    /* menu, header, main, footer */
+    grid-template-columns: 1fr;
+}
+
+.header {
+    grid-area: header;
+    background-color: #fffffe;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    padding: 15px 1%;
+    align-items: center;
+}
+
+.menu {
+    grid-area: menu;
+    position: fixed;
+    height: 100vh;
+}
+
+.main {
+    grid-area: main;
+    background-color: #ffffff;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #f0f0f0;
+}
+
+.toggle-menu-bar {
+    height: 35px;
+    width: 35px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.toggle-menu-bar:hover {
+    background-color: var(--medium-gray);
+    color: var(--dark-gray);
+    border-radius: 50%;
+}
+
+.toggle-menu-bar i {
+    font-size: var(--icon-md);
+}

@@ -1,29 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { MenubarModule } from 'primeng/menubar';
+import { Component } from '@angular/core';
+import { PanelMenuModule } from 'primeng/panelmenu';
 @Component({
   selector: 'header-section',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  imports: [MenubarModule]
+  imports: [PanelMenuModule]
 })
-export class HeaderComponent implements OnInit {
-  items: MenuItem[] | undefined;
+export class HeaderComponent {
 
-  ngOnInit() {
-    this.items = [
-      {
-        label: 'Home',
-        icon: 'pi pi-home'
-      },
-      {
-        label: 'Dinning',
-        icon: 'pi pi-star'
-      },
-      {
-        label: 'About',
-        icon: 'pi pi-envelope'
-      }
-    ]
-  }
 }

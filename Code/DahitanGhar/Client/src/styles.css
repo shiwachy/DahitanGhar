@@ -50,6 +50,14 @@
     --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
     --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.15);
     --shadow-heavy: 0 16px 40px rgba(0, 0, 0, 0.2);
+
+    /* Icon size */
+    --icon-xs: 0.5rem;
+    --icon-sm: 1rem;
+    --icon-md: 1.5rem;
+    --icon-lg: 2rem;
+    --icon-xl: 3rem;
+    --icon-xxl: 4rem;
 }
 
 /* Base font */
