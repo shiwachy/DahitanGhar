@@ -3,7 +3,9 @@
         <a (click)="ToggleSidebar()" class="toggle-menu-bar">
             <i class="pi pi-bars"></i>
         </a>
-        <header-section></header-section>
+        <div style="width: 100%;">
+            <header-section></header-section>
+        </div>
     </header>
 
     <nav class="menu" *ngIf="isSidebarVisible">

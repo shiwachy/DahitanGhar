@@ -1,22 +1,57 @@
- ::ng-deep .p-menubar {
-     background-color: #fff;
-     border: 0px;
-     justify-self: self-end;
-     padding: 1rem 0px;
- }
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 3%;
+}
 
- .ele-container .header-bar {
-     /* Background color */
-     --p-menubar-background: #fff;
-     /* padding of menubar item */
-     --p-menubar-base-item-padding: var(--space-sm) var(--space-md);
+.btn-header-actions {
+    display: flex;
+    gap: 25px;
+}
 
-     /* Border radius of menubar item */
-     --p-menubar-base-item-border-radius: 50px;
 
-     /* Background color of menu button on hover */
-     --p-menubar-item-focus-background: var(--primary-gold);
+.btn-book-table {
+    background: linear-gradient(45deg, var(--primary-gold), var(--accent-copper));
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    display: inline-block;
+}
 
-     /* color of label and icon of menu item */
-     --p-menubar-item-focus-color: white;
- }
+.btn-book-table:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-heavy);
+}
+
+
+.btn-reserve-room {
+    background: transparent;
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    font-size: 1rem;
+    color: #228B22;
+    border: 2px solid #228B22;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    display: inline-block;
+}
+
+.btn-reserve-room:hover {
+    background: #228B22;
+    color: white;
+    transform: translateY(-2px);
+}
