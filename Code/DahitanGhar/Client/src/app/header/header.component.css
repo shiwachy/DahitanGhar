@@ -55,3 +55,9 @@
     color: white;
     transform: translateY(-2px);
 }
+
+.logo img {
+    height: 40px;
+    width: auto;
+    object-fit: fill;
+}
