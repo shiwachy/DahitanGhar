@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
 @Component({
@@ -8,19 +8,29 @@ import { MenuModule } from 'primeng/menu';
   imports: [MenuModule]
 })
 export class SidebarComponent {
-  items: MenuItem[];
 
+  //This event emitter is used to hide navbar when an action button is clicked.
+  @Output() OnClickNavigationAction: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  items: MenuItem[];
   constructor() {
     this.items = [
       {
         items: [
           {
+            icon: 'pi pi-angle-double-left',
+            id: 'icon_Action_ToggleMenu',
+            command: () => this.NavigationActionClicked()
+          },
+          {
             label: 'Home',
-            icon: 'pi pi-home'
+            icon: 'pi pi-home',
+            routerLink: '/home'
           },
           {
             label: 'About',
-            icon: 'pi pi-question-circle'
+            icon: 'pi pi-question-circle',
+            routerLink: '/header'
           }
         ]
       },
@@ -38,5 +48,9 @@ export class SidebarComponent {
         ]
       }
     ];
+  }
+
+  NavigationActionClicked() {
+    this.OnClickNavigationAction.emit(true);
   }
 }

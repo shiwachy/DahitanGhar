@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 @Component({
@@ -8,8 +9,8 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
   styleUrl: './app.component.css',
   imports: [HeaderComponent,
     SidebarComponent,
-    CommonModule
-  ]
+    CommonModule,
+    RouterOutlet]
 })
 export class AppComponent {
   isSidebarVisible: boolean = false;

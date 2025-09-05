@@ -2,3 +2,12 @@
     width: 200px;
     height: 100vh;
 }
+
+
+/* Target the first visible menubar item.The actual first <li> in the DOM is used for a label/placeholder,
+   so the first real menu item is the second child. */
+::ng-deep .p-menu .p-menu-list>li:nth-child(2) {
+    position: fixed;
+    top: 2px;
+    left: 150px;
+}

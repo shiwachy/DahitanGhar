@@ -9,104 +9,11 @@
     </header>
 
     <nav class="menu" *ngIf="isSidebarVisible">
-        <app-sidebar></app-sidebar>
+        <app-sidebar (OnClickNavigationAction)="ToggleSidebar()"></app-sidebar>
     </nav>
     <main class="main">
-        <div style="background-color: rgba(179, 245, 204, 0.975);">
-            <h1>Immerse yourself in the rich cultural</h1>
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h4>Immerse yourself in the rich cultural</h4>
-
-            <h5>Immerse yourself in the rich cultural</h5>
-
-            <h6>Immerse yourself in the rich cultural</h6>
-        </div>
-        <div class="ele-container" style="background-color: rgba(179, 245, 204, 0.975);">
-            <h1>Immerse yourself in the rich cultural</h1>
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h4>Immerse yourself in the rich cultural</h4>
-
-            <h5>Immerse yourself in the rich cultural</h5>
-
-            <h6>Immerse yourself in the rich cultural</h6>
-        </div>
-        <div class="ele-container" style="background-color: rgba(179, 245, 204, 0.975);">
-            <h1>Immerse yourself in the rich cultural</h1>
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h4>Immerse yourself in the rich cultural</h4>
-
-            <h5>Immerse yourself in the rich cultural</h5>
-
-            <h6>Immerse yourself in the rich cultural</h6>
-        </div>
-        <div class="ele-container" style="background-color: rgba(179, 245, 204, 0.975);">
-            <h1>Immerse yourself in the rich cultural</h1>
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h4>Immerse yourself in the rich cultural</h4>
-
-            <h5>Immerse yourself in the rich cultural</h5>
-
-            <h6>Immerse yourself in the rich cultural</h6>
-        </div>
-        <div class="ele-container" style="background-color: rgba(179, 245, 204, 0.975);">
-            <h1>Immerse yourself in the rich cultural</h1>
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h4>Immerse yourself in the rich cultural</h4>
-
-            <h5>Immerse yourself in the rich cultural</h5>
-
-            <h6>Immerse yourself in the rich cultural</h6>
-        </div>
-        <div class="ele-container" style="background-color: rgba(179, 245, 204, 0.975);">
-            <h1>Immerse yourself in the rich cultural</h1>
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h4>Immerse yourself in the rich cultural</h4>
-
-            <h5>Immerse yourself in the rich cultural</h5>
-
-            <h6>Immerse yourself in the rich cultural</h6>
-        </div>
-        <div class="ele-container" style="background-color: rgba(179, 245, 204, 0.975);">
-            <h1>Immerse yourself in the rich cultural</h1>
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h4>Immerse yourself in the rich cultural</h4>
-
-            <h5>Immerse yourself in the rich cultural</h5>
-
-            <h6>Immerse yourself in the rich cultural</h6>
-        </div>
-        <div class="ele-container" style="background-color: rgba(179, 245, 204, 0.975);">
-            <h1>Immerse yourself in the rich cultural</h1>
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h2>Immerse yourself in the rich cultural</h2>
-
-            <h4>Immerse yourself in the rich cultural</h4>
-
-            <h5>Immerse yourself in the rich cultural</h5>
-
-            <h6>Immerse yourself in the rich cultural</h6>
+        <div style="width: 100%;">
+            <router-outlet></router-outlet>
         </div>
     </main>
 
