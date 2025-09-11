@@ -106,3 +106,25 @@ div {
     padding: 0px 5%;
     width: 100%;
 }
+
+.btn-golden-md {
+    background: linear-gradient(45deg, var(--primary-gold), var(--accent-copper));
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    display: inline-block;
+}
+
+.btn-golden-md:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-heavy);
+}

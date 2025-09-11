@@ -9,30 +9,6 @@
     gap: 25px;
 }
 
-
-.btn-book-table {
-    background: linear-gradient(45deg, var(--primary-gold), var(--accent-copper));
-    font-family: var(--font-secondary);
-    font-weight: 500;
-    font-size: 1rem;
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border: none;
-    border-radius: var(--radius-full);
-    transition: all 0.3s ease;
-    position: relative;
-    cursor: pointer;
-    box-shadow: var(--shadow-medium);
-    display: inline-block;
-}
-
-.btn-book-table:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-heavy);
-}
-
-
 .btn-reserve-room {
     background: transparent;
     font-family: var(--font-secondary);

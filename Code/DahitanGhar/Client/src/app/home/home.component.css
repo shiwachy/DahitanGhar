@@ -66,3 +66,7 @@
     row-gap: 1rem;
     padding: var(--space-lg) 0px;
 }
+
+.section-features {
+    padding: var(--space-lg) 0px;
+}
