@@ -5,7 +5,7 @@
 }
 
 .service-card-body {
-    height: 400px;
+    height: var(--height-elm);
     width: 300px;
     background: var(--white);
     border-radius: 20px;

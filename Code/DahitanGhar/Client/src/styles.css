@@ -58,6 +58,9 @@
     --icon-lg: 2rem;
     --icon-xl: 3rem;
     --icon-xxl: 4rem;
+
+    /* Element height */
+    --height-elm: 400px;
 }
 
 /* Base font */
