@@ -58,3 +58,11 @@
     color: var(--primary-terracotta);
     margin-bottom: var(--space-lg);
 }
+
+.section-service-cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    padding: 2rem 0px;
+}

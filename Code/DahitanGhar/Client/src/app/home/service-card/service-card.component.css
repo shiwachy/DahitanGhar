@@ -1,0 +1,43 @@
+.services-card {
+    padding-top: 5px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(90deg, var(--primary-gold), var(--primary-terracotta));
+}
+
+.service-card-body {
+    height: 400px;
+    width: 300px;
+    background: var(--white);
+    border-radius: 20px;
+    padding: var(--space-xl);
+    text-align: center;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card-icon img {
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+}
+
+.card-title {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    color: var(--dark-gray);
+    margin-bottom: var(--space-sm);
+}
+
+.card-description {
+    color: var(--secondary-deep-brown);
+    line-height: 1.5;
+}
+
+
+
+.service-card-body:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+}
