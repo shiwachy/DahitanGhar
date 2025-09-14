@@ -14,7 +14,7 @@
 
 
 .section-cover {
-    min-height: 100vh;
+    min-height: 90vh;
     background: linear-gradient(135deg, var(--secondary-cream) 0%, var(--white) 100%);
     display: flex;
 }
@@ -37,8 +37,13 @@
 }
 
 .section-cover-img img {
-    height: 100vh;
-    aspect-ratio: 8/10;
+    max-width: 100%;
+    border-radius: var(--radius-lg);
+    font-size: 2rem;
+    font-weight: bold;
+    flex: 2;
+    box-shadow: var(--shadow-medium);
+    aspect-ratio: 1.2/1;
     object-fit: cover;
 }
 
@@ -69,4 +74,16 @@
 
 .section-features {
     padding: var(--space-lg) 0px;
+}
+
+
+@media screen and (max-width: 992px) {
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 1.8/1;
+    }
+
+
 }
