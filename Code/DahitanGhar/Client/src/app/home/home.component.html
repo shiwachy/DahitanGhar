@@ -1,1 +1,75 @@
-<p>home works!</p>
+<div>
+    <!-- We need this caurosal. Its taking very high z-index, so for now we do not use it. -->
+    <p-carousel [value]="products" [numVisible]="1" [numScroll]="1" [circular]="true"
+        [responsiveOptions]="responsiveOptions" autoplayInterval="3000" contentClass="carousal">
+        <ng-template let-product #item>
+            <div class="carousel-item">
+                <img src="Caurosal/{{product}}" [alt]="product" />
+            </div>
+        </ng-template>
+    </p-carousel>
+
+
+    <!-- Cover Page section -->
+    <section class="section-cover">
+        <div class="ele-container section-cover-main">
+            <div class="section-cover-content ">
+                <h1 class="section-cover-title">Authentic Tharu Experience</h1>
+                <p class="section-cover-subtitle">Taste • Stay • Celebrate</p>
+                <p>
+                    Immerse yourself in the rich cultural heritage of the Tharu community through our traditional
+                    cuisine, comfortable lodging, and beautiful event spaces.
+                </p>
+            </div>
+            <div class="section-cover-img">
+                <img src="Caurosal/img1.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- Service card section -->
+    <section class="ele-container">
+        <div class="section-service-cards">
+            <div>
+                <service-card cardIconPath="icons/forkKnief.png" cardTitle="Authentic Restaurant"
+                    cardDescription="Traditional Tharu cuisine with dishes like Dhikri, Bagiya, and local fish curry prepared with authentic recipes.">
+                </service-card>
+            </div>
+            <div>
+                <service-card cardIconPath="icons/hall.png" cardTitle="Comfortable Lodge"
+                    cardDescription="Well-appointed rooms with modern amenities while maintaining the warmth of traditional Tharu hospitality.">
+                </service-card>
+            </div>
+            <div>
+                <service-card cardIconPath="icons/hotel.png" cardTitle="Event Halls"
+                    cardDescription="Spacious venues perfect for weddings, cultural events, and corporate gatherings with authentic Tharu decor.">
+                </service-card>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features section -->
+    <section class="ele-container" style="background-color: #f8f8f8;">
+        <div class="section-features">
+            <features title="Traditional Cuisine"
+                description="Experience the authentic flavors of Tharu community with our traditional dishes prepared using age-old recipes and local ingredients."
+                imgPath="features/tharuFood.jpg" [templateStyle]="_enum_GridTemplateStyle.ltr">
+            </features>
+        </div>
+        <div class="section-features">
+            <features title="Comfortable Rooms"
+                description="Our lodge offers comfortable accommodations with traditional Tharu architecture and modern amenities for a perfect stay."
+                imgPath="features/bedroom.jpg" [templateStyle]="_enum_GridTemplateStyle.rtl">
+            </features>
+        </div>
+        <div class="section-features">
+            <features title="Event Spaces"
+                description="Host your special occasions in our beautifully designed event halls that blend modern facilities with traditional Tharu aesthetics."
+                imgPath="features/eventHall.jpg" [templateStyle]="_enum_GridTemplateStyle.ltr">
+            </features>
+        </div>
+    </section>
+
+
+</div>

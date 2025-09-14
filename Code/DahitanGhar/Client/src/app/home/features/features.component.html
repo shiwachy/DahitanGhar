@@ -1,0 +1,12 @@
+<div class="feature-block" [ngClass]="templateStyle == 'ltr' ? 'grid-template-area-ltr':'grid-template-area-rtl'">
+    <div class="feature-content">
+        <h2 class="feature-title">{{title}}</h2>
+        <p class="feature-text">
+            {{description}}
+        </p>
+        <button href="#" class="btn-golden-md">View Menu</button>
+    </div>
+    <div class="feature-visual">
+        <img [src]="imgPath" alt="cusines">
+    </div>
+</div>
