@@ -1,0 +1,75 @@
+<div class="booking-container">
+    <div class="booking-tabs">
+        <button class="tab-button active">Lodge</button>
+        <button class="tab-button">Events</button>
+    </div>
+    <div class="booking-form">
+        <h3 class="form-title">Make a Reservation</h3>
+        <div class="form-grid">
+            <fieldset class="form-field">
+                <legend>Guest Information</legend>
+                <div class="form-group">
+                    <label class="form-label" for="inp_custName">
+                        Name<span class="required-field-star">*</span>
+                    </label>
+                    <input for="inp_custName" type="text" class="form-input" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="inp_custPhone">
+                        Phone<span class="required-field-star">*</span>
+                    </label>
+                    <input id="inp_custPhone" type="text" class="form-input" placeholder="Your phone">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="inp_custPhoneOptional">Phone</label>
+                    <input id="inp_custPhoneOptional" type="text" class="form-input" placeholder="Your phone">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="inp_custEmail">Email</label>
+                    <input id="inp_custEmail" type="text" class="form-input" placeholder="Your phone">
+                </div>
+            </fieldset>
+
+            <fieldset class="form-field">
+                <legend>Booking Details</legend>
+                <div class="form-group">
+                    <label class="form-label" for="inp_checkinDate">
+                        Check-In Date<span class="required-field-star">*</span>
+                    </label>
+                    <input id="inp_checkinDate" type="date" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="inp_checkOutDate">
+                        Check-Out Date<span class="required-field-star">*</span>
+                    </label>
+                    <input id="inp_checkOutDate" type="date" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="inp_selectRoom">
+                        Select Room<span class="required-field-star">*</span>
+                    </label>
+                    <select id="inp_selectRoom" class="form-input">
+                        <option>Non-Ac</option>
+                        <option>Dinning</option>
+                        <option>Deluxe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="inp_guestCount">
+                        No of Guest<span class="required-field-star">*</span>
+                    </label>
+                    <input id="inp_guestCount" type="number" class="form-input" min="1" max="3">
+                </div>
+            </fieldset>
+
+            <fieldset class="form-field">
+                <legend>Additional Preferences</legend>
+                <textarea id="inp_additionalPreferences"
+                    placeholder="Food Preferences/Equipment Needs/Decorations"></textarea>
+            </fieldset>
+        </div>
+        <div class="from-submit">
+            <button class="btn-submit">Confirm Booking</button>
+        </div>
+    </div>
+</div>

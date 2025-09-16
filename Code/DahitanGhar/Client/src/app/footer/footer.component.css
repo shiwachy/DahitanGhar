@@ -1,0 +1,36 @@
+.footer {
+    background: var(--dark-gray);
+    color: var(--white);
+    padding: var(--space-xxl);
+    display: flex;
+    align-items: center;
+}
+
+.footer-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: var(--space-xl);
+}
+
+.footer-column h6 {
+    color: var(--primary-gold);
+    margin-bottom: var(--space-md);
+}
+
+.footer-column a,
+.footer-column p {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    text-decoration: none;
+    line-height: 1.6;
+    margin-bottom: var(--space-xs);
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: var(--primary-gold);
+}

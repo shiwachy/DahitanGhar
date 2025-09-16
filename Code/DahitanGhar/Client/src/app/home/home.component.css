@@ -77,6 +77,16 @@
 }
 
 
+
+.booking-section {
+    background: linear-gradient(135deg, var(--primary-earth), var(--secondary-deep-brown));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl);
+}
+
+
 @media screen and (max-width: 992px) {
     .carousel-item img {
         width: 100%;
@@ -84,6 +94,4 @@
         object-fit: cover;
         aspect-ratio: 1.8/1;
     }
-
-
 }
