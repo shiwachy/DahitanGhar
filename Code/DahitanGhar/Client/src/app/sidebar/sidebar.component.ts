@@ -30,7 +30,7 @@ export class SidebarComponent {
           {
             label: 'About',
             icon: 'pi pi-question-circle',
-            routerLink: '/header'
+            routerLink: '/about'
           }
         ]
       },

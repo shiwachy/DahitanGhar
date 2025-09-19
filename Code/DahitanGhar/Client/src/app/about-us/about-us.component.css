@@ -1,0 +1,52 @@
+/* PAGE HEADER */
+.page-header {
+    height: 60vh;
+    background-color: #a0aec0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-header::before {
+    counter-reset: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    animation: subtle-move 30s ease-in-out infinite;
+}
+
+.page-header-content {
+    text-align: center;
+    color: var(--white);
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 var(--space-lg);
+}
+
+.page-title {
+    font-size: clamp(3rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #2d3748;
+    margin-bottom: var(--space-md);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.page-subtitle {
+    font-family: var(--font-accent);
+    color: #4a5568;
+    font-size: clamp(1rem, 2.5vw, 3vw);
+    margin-bottom: var(--space-lg);
+}
+
+.breadcrumb {
+    font-size: 1rem;
+    color: #4a5568;
+    display: flex;
+    justify-content: center;
+}
+
+.breadcrumb a {
+    color: #4a5568;
+    text-decoration: none;
+}
