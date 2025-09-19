@@ -128,3 +128,7 @@ div {
     transform: translateY(-3px);
     box-shadow: var(--shadow-heavy);
 }
+
+.required-field-star {
+    color: red;
+}
